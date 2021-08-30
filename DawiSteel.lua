@@ -1320,7 +1320,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.allo
 Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.damage_profile = "sienna_dagger_heavy_stab"
 Weapons.one_handed_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
 Weapons.one_handed_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
-Weapons.one_handed_daggers_template_1.block_fatigue_point_multiplier = 0.3
+Weapons.one_handed_daggers_template_1.block_fatigue_point_multiplier = 0.25
 
 --------------------------1H HAMMER AND MACE-----------------------------------------
 --kruber
@@ -1587,7 +1587,7 @@ Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.damag
 Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.damage_profile_right = "dual_sword_mace_heavy"
 Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.damage_profile_right = "dual_sword_mace_heavy"
 --------------------------DUAL AXE-----------------------------------------
-Weapons.dual_wield_axes_template_1.block_fatigue_point_multiplier = 0.3
+Weapons.dual_wield_axes_template_1.block_fatigue_point_multiplier = 0.25
 Weapons.dual_wield_axes_template_1.actions.action_one.push.fatigue_cost = "action_stun_push"
 Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_bopp.damage_profile_left = "dual_axe_bopp"
 Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_bopp.damage_profile_right = "dual_axe_bopp"
@@ -1619,7 +1619,7 @@ Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_last.
 Weapons.dual_wield_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
 Weapons.dual_wield_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.ignore_armour_hit = true
-Weapons.dual_wield_daggers_template_1.block_fatigue_point_multiplier = 0.3
+Weapons.dual_wield_daggers_template_1.block_fatigue_point_multiplier = 0.25
 Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.range_mod = 1.25
 Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.allowed_chain_actions[3].start_time = 0.4
 --Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.anim_time_scale = 1 * 2
@@ -1627,6 +1627,12 @@ Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.allowed_chain
 --------------------------RAPIER-----------------------------------------
 
 Weapons.fencing_sword_template_1.block_angle = 40
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions[6] = {
+	sub_action = "default",
+	start_time = 0.55,
+	action = "action_wield",
+	input = "action_wield"
+}
 --PlayerUnitStatusSettings.fatigue_point_costs.weapon_special_ranged_cost = 0.5
 --Weapons.fencing_sword_template_1.actions.action_three.block_shot.fatigue_cost = "weapon_special_ranged_cost"
 --Weapons.fencing_sword_template_1.actions.action_three.block_shot.fatigue_cost_on_shot = true
