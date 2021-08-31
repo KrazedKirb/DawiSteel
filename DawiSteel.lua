@@ -1,24 +1,174 @@
 local mod = get_mod("DawiSteel")
---------------------------------HIT MASS COUNTS------------------------------
---[[AXE_HIT_MASS_COUNT = {
-	chaos_raider = 0.1,
-	skaven_plague_monk = 0.1,
-	beastmen_gor = 0.1,
-	beastmen_ungor = 0.1,
-	chaos_berzerker = 0.1,
-	skaven_clan_rat_with_shield = 0.1,
-	chaos_marauder_with_shield = 0.1,
-	chaos_fanatic = 0.1,
-	skaven_slave = 0.1,
-	skaven_clan_rat = 0.1,
-	chaos_marauder = 0.1
-}]]
-RANGED_PIERCE_HIT_MASS_COUNT = {
-	chaos_raider = 1.5,
-	skaven_plague_monk = 1.25,
-	chaos_berzerker = 1.25
+--$$\   $$\                     $$\                           
+--$$ | $$  |                    $$ |                          
+--$$ |$$  /  $$$$$$\  $$\   $$\ $$$$$$$\   $$$$$$\   $$$$$$\  
+--$$$$$  /  $$  __$$\ $$ |  $$ |$$  __$$\ $$  __$$\ $$  __$$\ 
+--$$  $$<   $$ |  \__|$$ |  $$ |$$ |  $$ |$$$$$$$$ |$$ |  \__|
+--$$ |\$$\  $$ |      $$ |  $$ |$$ |  $$ |$$   ____|$$ |      
+--$$ | \$$\ $$ |      \$$$$$$  |$$$$$$$  |\$$$$$$$\ $$ |      
+--\__|  \__|\__|       \______/ \_______/  \_______|\__|      
+--____________________________________________________________________________________     
+--------------------------SWORD AND SHIELD-------------------------------
+
+Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_left.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.3,
+					external_multiplier = 0.6,
+					end_time = 0.5,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_right.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.9,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.3,
+					external_multiplier = 0.6,
+					end_time = 0.5,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_last.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.1,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.3,
+					external_multiplier = 0.75,
+					end_time = 0.5,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_sword_shield_template_1.actions.action_one.heavy_attack_right.damage_profile = "medium_slashing_tank_1h_finesse"
+Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_last.hit_mass_count = LINESMAN_HIT_MASS_COUNT
+Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_left.damage_profile = "light_slashing_linesman_finesse"
+Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_right.damage_profile = "light_slashing_linesman_finesse"
+Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_last.damage_profile = "sword_shield_light_last"
+--------------------------EMPIRE LONGBOW---------------------------------
+
+Weapons.longbow_empire_template.actions.action_two.default.aim_zoom_delay = nil
+Weapons.longbow_empire_template.actions.action_two.default.default_zoom = "first_person_node"
+Weapons.longbow_empire_template.actions.action_two.default.buffed_zoom_thresholds = {
+				"first_person_node",
+				"zoom_in",
+				"increased_zoom_in"
+			}
+BuffTemplates.markus_huntsman_passive_increased_ammunition.buffs[1].perk = "increased_zoom"
+--------------------------REPEATER HANDGUN-------------------------------
+
+Weapons.repeating_handgun_template_1.actions.action_two.default.default_zoom = "first_person_node"
+Weapons.repeating_handgun_template_1.actions.action_two.default.zoom_condition_function = function ()
+				return true
+			end
+Weapons.repeating_handgun_template_1.actions.action_two.default.unzoom_condition_function = function (end_reason)
+				return end_reason ~= "new_interupting_action"
+			end
+Weapons.repeating_handgun_template_1.actions.action_two.default.buffed_zoom_thresholds = {
+				"first_person_node",
+				"zoom_in"
+			}
+Weapons.repeating_handgun_template_1.actions.action_two.spray_loop.default_zoom = "first_person_node"
+Weapons.repeating_handgun_template_1.actions.action_two.spray_loop.zoom_condition_function = function ()
+				return true
+			end
+Weapons.repeating_handgun_template_1.actions.action_two.spray_loop.unzoom_condition_function = function (end_reason)
+				return end_reason ~= "new_interupting_action"
+			end
+Weapons.repeating_handgun_template_1.actions.action_two.spray_loop.buffed_zoom_thresholds = {
+				"first_person_node",
+				"zoom_in"
+			}
+SpreadTemplates.repeating_handgun = {
+		continuous = {
+			still = {
+				max_yaw = 0.6,
+				max_pitch = 0.6
+			},
+			moving = {
+				max_yaw = 1.5,
+				max_pitch = 1.5
+			},
+			crouch_still = {
+				max_yaw = 0.5,
+				max_pitch = 0.5
+			},
+			crouch_moving = {
+				max_yaw = 0.75,
+				max_pitch = 0.75
+			},
+			zoomed_still = {
+				max_yaw = 0.6,
+				max_pitch = 0.6
+			},
+			zoomed_moving = {
+				max_yaw = 1.5,
+				max_pitch = 1.5
+			},
+			zoomed_crouch_still = {
+				max_yaw = 0.5,
+				max_pitch = 0.5
+			},
+			zoomed_crouch_moving = {
+				max_yaw = 0.75,
+				max_pitch = 0.75
+			}
+		},
+		immediate = {
+			being_hit = {
+				immediate_pitch = 1.4,
+				immediate_yaw = 1.4
+			},
+			shooting = {
+				immediate_pitch = 1,
+				immediate_yaw = 1
+			}
+		}
 }
---------------------------------THROWING AXES------------------------------
+--------------------------HALBERD-----------------------------------------
+
+Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.hit_mass_count = LINESMAN_HIT_MASS_COUNT
+Weapons.two_handed_halberds_template_1.block_angle = 180
+Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.damage_profile = "halberd_heavy_left"
+--------------------------BRETON SNS--------------------------------------
+
+Weapons.one_handed_sword_shield_template_2.actions.action_one.light_attack_right.damage_profile = "breton_SnS_right"
+--------------------------SWORD AND MACE----------------------------------
+
+Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_left_diagonal.damage_profile = "oneH_hammer_light_new"
+Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
+Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_left_diagonal.hit_mass_count = TANK_HIT_MASS_COUNT
+Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_right.hit_mass_count = TANK_HIT_MASS_COUNT
+
+Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.hit_mass_count = nil
+Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.hit_mass_count = nil
+Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.damage_profile_left = "dual_sword_mace_heavy"
+Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.damage_profile_left = "dual_sword_mace_heavy"
+Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.damage_profile_right = "dual_sword_mace_heavy"
+Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.damage_profile_right = "dual_sword_mace_heavy"
+--____________________________________________________________________________________                                                                                                            
+--$$$$$$$\                            $$\ $$\           
+--$$  __$$\                           $$ |\__|          
+--$$ |  $$ | $$$$$$\   $$$$$$\   $$$$$$$ |$$\ $$$$$$$\  
+--$$$$$$$\ | \____$$\ $$  __$$\ $$  __$$ |$$ |$$  __$$\ 
+--$$  __$$\  $$$$$$$ |$$ |  \__|$$ /  $$ |$$ |$$ |  $$ |
+--$$ |  $$ |$$  __$$ |$$ |      $$ |  $$ |$$ |$$ |  $$ |
+--$$$$$$$  |\$$$$$$$ |$$ |      \$$$$$$$ |$$ |$$ |  $$ |
+--\_______/  \_______|\__|       \_______|\__|\__|  \__|
+--____________________________________________________________________________________     
+--------------------------THROWING AXES-----------------------------------
 -----------------------------RECALL SPEED INCREASE---------------------------
 Weapons.one_handed_throwing_axes_template.actions.weapon_reload.default.minimum_hold_time = 0
 Weapons.one_handed_throwing_axes_template.actions.weapon_reload.default.allowed_chain_actions = {
@@ -54,7 +204,7 @@ Weapons.one_handed_throwing_axes_template.actions.weapon_reload.catch.allowed_ch
 Weapons.one_handed_throwing_axes_template.actions.action_two.default.allowed_chain_actions = {
 				{
 					sub_action = "default",
-					start_time = 0.3,
+					start_time = 0.35,
 					action = "weapon_reload",
 					input = "weapon_reload"
 				},
@@ -111,24 +261,9 @@ Weapons.one_handed_throwing_axes_template.actions.action_one.default.allowed_cha
 					end_time = math.huge
 				}
 			}
---------------------------------MOONFIRE BOW------------------------------
------EXPERIMENTAL MOONBOW
-Weapons.we_deus_01_template_1.actions.action_one.default.impact_data.damage_profile = "we_deus_01_small"
-Weapons.we_deus_01_template_1.actions.action_one.default.drain_amount = 4.1
-Weapons.we_deus_01_template_1.actions.action_one.shoot_special_charged.impact_data.damage_profile = "we_deus_01_med"
-DamageProfileTemplates.we_deus_01_small_explosion.default_target.dot_template_name = "we_deus_01_small" --"we_deus_01_dot_med"
-DamageProfileTemplates.we_deus_01_large_explosion.default_target.dot_template_name = "we_deus_01_dot_med"
-DamageProfileTemplates.we_deus_01_small_explosion_glance.default_target.dot_template_name = "we_deus_01_small" --"we_deus_01_dot_med"
-DamageProfileTemplates.we_deus_01_large_explosion_glance.default_target.dot_template_name = "we_deus_01_dot_med"
---NetworkLookup.dot_type_lookup.we_deus_01_dot_small = "burning_dot"
---NetworkLookup.dot_type_lookup.we_deus_01_dot_med = "burning_dot"
-DotTypeLookup.we_deus_01_dot_small = "burning_dot"
-DotTypeLookup.we_deus_01_dot_med = "burning_dot"
------------------------------------1H AXE---------------------------------
+--------------------------1H AXE------------------------------------------
 --saltz
 Weapons.one_hand_axe_template_1.actions.action_one.light_attack_bopp.damage_profile = "oneH_axe_bopp"
---Weapons.one_hand_axe_template_1.actions.action_one.light_attack_bopp.hit_mass_count = AXE_HIT_MASS_COUNT
---Weapons.one_hand_axe_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions[1].sub_action = "default_right"
 Weapons.one_hand_axe_template_1.actions.action_one.light_attack_bopp.anim_event = "attack_swing_right" --"attack_swing_up_left" --"attack_swing_right"
 Weapons.one_hand_axe_template_1.actions.action_one.light_attack_bopp.damage_window_start = 0.33 --0.15 0.33
 Weapons.one_hand_axe_template_1.actions.action_one.light_attack_bopp.use_precision_sweep = false
@@ -144,8 +279,6 @@ Weapons.one_hand_axe_template_1.actions.action_one.light_attack_bopp.additional_
 Weapons.one_hand_axe_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 0.9 * 1.15 --0.95
 --bardin
 Weapons.one_hand_axe_template_2.actions.action_one.light_attack_bopp.damage_profile = "oneH_axe_bopp"
---Weapons.one_hand_axe_template_2.actions.action_one.light_attack_bopp.hit_mass_count = AXE_HIT_MASS_COUNT
---Weapons.one_hand_axe_template_2.actions.action_one.light_attack_bopp.allowed_chain_actions[1].sub_action = "default_right"
 Weapons.one_hand_axe_template_2.actions.action_one.light_attack_bopp.anim_event = "attack_swing_right" --"attack_swing_up_left"
 Weapons.one_hand_axe_template_2.actions.action_one.light_attack_bopp.damage_window_start = 0.33
 Weapons.one_hand_axe_template_2.actions.action_one.light_attack_bopp.use_precision_sweep = false
@@ -169,23 +302,26 @@ Weapons.one_hand_axe_template_2.actions.action_one.light_attack_left.damage_prof
 Weapons.one_hand_axe_template_2.actions.action_one.light_attack_right.damage_profile = "oneH_axe_diag"
 Weapons.one_hand_axe_template_1.actions.action_one.light_attack_left.damage_profile = "oneH_axe_diag"
 Weapons.one_hand_axe_template_1.actions.action_one.light_attack_right.damage_profile = "oneH_axe_diag"
--------------------------------AXE AND SHIELD-----------------------------------
+--------------------------AXE AND SHIELD----------------------------------
+--movespeed
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_last.buff_data[1].external_multiplier = 1.2
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_last.buff_data[2].external_multiplier = 0.7
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_right.buff_data[1].external_multiplier = 1
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_left.buff_data[1].external_multiplier = 0.8
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_bopp.buff_data[1].external_multiplier = 0.9
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_bopp.buff_data[2].external_multiplier = 0.75
+--chain speed
+Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_left.allowed_chain_actions[1].start_time = 0.6
+Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_right.allowed_chain_actions[1].start_time = 0.6
 Weapons.one_hand_axe_shield_template_1.actions.action_one.heavy_attack.allowed_chain_actions[2].start_time = 0.3
+--push attack changes
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 1 * 1.2
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_bopp.range_mod = 1.25
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_bopp.damage_profile = "medium_slashing_axe_linesman"
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_bopp.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_bopp.additional_critical_strike_chance = 0.1
-Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_left.allowed_chain_actions[1].start_time = 0.6
-Weapons.one_hand_axe_shield_template_1.actions.action_one.light_attack_right.allowed_chain_actions[1].start_time = 0.6
-
---HAMMER AND SHIELD
+--------------------------HAMMER AND SHIELD-------------------------------
+--movespeed
 Weapons.one_handed_hammer_shield_template_2.actions.action_one.light_attack_left.buff_data = {
 				{
 					start_time = 0,
@@ -270,6 +406,7 @@ Weapons.one_handed_hammer_shield_template_1.actions.action_one.light_attack_last
 					buff_name = "planted_decrease_movement"
 				}
 			}
+--damage profiles/bash speed
 --kruber
 Weapons.one_handed_hammer_shield_template_1.actions.action_one.light_attack_left.damage_profile = "oneH_hammer_light_new"
 Weapons.one_handed_hammer_shield_template_1.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
@@ -278,87 +415,8 @@ Weapons.one_handed_hammer_shield_template_1.actions.action_one.default.allowed_c
 Weapons.one_handed_hammer_shield_template_2.actions.action_one.light_attack_left.damage_profile = "oneH_hammer_light_new"
 Weapons.one_handed_hammer_shield_template_2.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
 Weapons.one_handed_hammer_shield_template_2.actions.action_one.default.allowed_chain_actions[2].start_time = 0.4
+--------------------------MASTERWORK PISTOL-------------------------------
 
---SWORD AND SHIELD
-Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_left.buff_data = {
-				{
-					start_time = 0,
-					external_multiplier = 0.8,
-					end_time = 0.3,
-					buff_name = "planted_decrease_movement"
-				},
-				{
-					start_time = 0.3,
-					external_multiplier = 0.6,
-					end_time = 0.5,
-					buff_name = "planted_decrease_movement"
-				}
-			}
-Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_right.buff_data = {
-				{
-					start_time = 0,
-					external_multiplier = 0.9,
-					end_time = 0.3,
-					buff_name = "planted_decrease_movement"
-				},
-				{
-					start_time = 0.3,
-					external_multiplier = 0.6,
-					end_time = 0.5,
-					buff_name = "planted_decrease_movement"
-				}
-			}
-Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_last.buff_data = {
-				{
-					start_time = 0,
-					external_multiplier = 1.1,
-					end_time = 0.3,
-					buff_name = "planted_decrease_movement"
-				},
-				{
-					start_time = 0.3,
-					external_multiplier = 0.75,
-					end_time = 0.5,
-					buff_name = "planted_decrease_movement"
-				}
-			}
-Weapons.one_handed_sword_shield_template_1.actions.action_one.heavy_attack_right.damage_profile = "medium_slashing_tank_1h_finesse" --"heavy_slashing_linesman_executioner"
-Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_last.hit_mass_count = LINESMAN_HIT_MASS_COUNT
-Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_left.damage_profile = "light_slashing_linesman_finesse"
-Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_right.damage_profile = "light_slashing_linesman_finesse"
-Weapons.one_handed_sword_shield_template_1.actions.action_one.light_attack_last.damage_profile = "sword_shield_light_last"
-
--------------------------------CROWBILL -----------------------------------------
-Weapons.one_handed_crowbill.actions.action_one.heavy_attack_right_up.additional_critical_strike_chance = 0.15
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.damage_window_start = 0.32
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.hit_armor_anim = "attack_hit_shield"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.range_mod = 1.25
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.sweep_z_offset = 0.15
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.width_mod = 30
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.no_damage_impact_sound_event = "fire_hit_armour"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.hit_effect = "melee_hit_sword_1h"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.damage_profile = "crowbill_push_attack_new"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.damage_window_end = 0.47
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.impact_sound_event = "fire_hit"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.dedicated_target_range = 3
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.anim_event = "attack_swing_up"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.allowed_chain_actions[1].sub_action = "default_right"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_upper.allowed_chain_actions[1].start_time = 0.6
-Weapons.one_handed_crowbill.actions.action_one.light_attack_left.additional_critical_strike_chance = 0.1
-Weapons.one_handed_crowbill.dodge_count = 4
-Weapons.one_handed_crowbill.actions.action_one.heavy_attack.damage_profile = "crowbill_heavy_upper"
-Weapons.one_handed_crowbill.actions.action_one.heavy_attack_left.damage_profile = "crowbill_heavy_flat"
---dmg profile CHANGES
-Weapons.one_handed_crowbill.actions.action_one.light_attack_left.damage_profile = "crowbill_light_stab_burn"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_right.damage_profile = "crowbill_light_diag"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_last.damage_profile = "crowbill_light_smiter"
-Weapons.one_handed_crowbill.actions.action_one.light_attack_upper.damage_profile = "crowbill_light_flat"
-
--------------------------------FLAMESTORM-----------------------------------------
-Weapons.staff_flamethrower_template.actions.action_one.default.spray_range = 16
-Weapons.staff_flamethrower_template.actions.action_two.default.charge_time = 2
----------------------------MASTERWORK PISTOL-----------------------------------------
---Weapons.heavy_steam_pistol_template_1.actions.action_one.shoot.headshot_multiplier = 10
 DamageProfileTemplates.shot_sniper_pistol.default_target.boost_curve_coefficient_headshot = 2
 DamageProfileTemplates.shot_sniper_pistol.critical_strike.attack_armor_power_modifer = {
 				1,
@@ -390,7 +448,8 @@ Weapons.heavy_steam_pistol_template_1.actions.action_one.default.charge_time = 0
 Weapons.heavy_steam_pistol_template_1.actions.action_one.default.allowed_chain_actions[3].start_time = 0.55 
 --masterwork semi-auto polish
 Weapons.heavy_steam_pistol_template_1.actions.action_two.default.allowed_chain_actions[2].start_time = 0
------------------------------Pickaxe-----------------------------------------
+--------------------------PICKAXE-----------------------------------------
+
 Weapons.two_handed_picks_template_1.actions.action_one.heavy_attack_left_charged.ignore_armour_hit = true
 Weapons.two_handed_picks_template_1.actions.action_one.heavy_attack_right_charged.ignore_armour_hit = true
 Weapons.two_handed_picks_template_1.actions.action_one.light_attack_bopp.ignore_armour_hit = true
@@ -404,9 +463,196 @@ Weapons.two_handed_picks_template_1.actions.action_one.light_attack_left.allowed
 Weapons.two_handed_picks_template_1.actions.action_one.light_attack_right.allowed_chain_actions[1].start_time = 0.6
 Weapons.two_handed_picks_template_1.actions.action_one.heavy_attack_left.anim_time_scale = 0.9 * 1.1
 Weapons.two_handed_picks_template_1.actions.action_one.heavy_attack_right.anim_time_scale = 0.9 * 1.1
--------------------------------ELGI AXE-----------------------------------------
---Weapons.we_one_hand_axe_template.actions.action_one.light_attack_bopp.damage_profile = "heavy_slashing_linesman_executioner"
---Weapons.we_one_hand_axe_template.actions.action_one.light_attack_bopp.hit_mass_count = LINESMAN_HIT_MASS_COUNT
+--------------------------1H HAMMER AND MACE------------------------------
+--kruber
+Weapons.one_handed_hammer_template_1.actions.action_one.light_attack_left.damage_profile = "oneH_hammer_light_new"
+Weapons.one_handed_hammer_template_1.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
+Weapons.one_handed_hammer_template_1.actions.action_one.light_attack_bopp.damage_profile = "oneH_hammer_push_attack_new"
+--bardin
+Weapons.one_handed_hammer_template_2.actions.action_one.light_attack_left.damage_profile = "oneH_hammer_light_new"
+Weapons.one_handed_hammer_template_2.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
+Weapons.one_handed_hammer_template_2.actions.action_one.light_attack_bopp.damage_profile = "oneH_hammer_push_attack_new"
+--------------------------CROSSBOW----------------------------------------
+
+DamageProfileTemplates.crossbow_bolt.critical_strike.attack_armor_power_modifer = {
+			1,
+			0.8,
+			1.5,
+			1,
+			0.825, --0.85,
+			0.25
+		}
+DamageProfileTemplates.crossbow_bolt.armor_modifier_near.attack = {
+			1,
+			0.8,
+			1.5,
+			1,
+			0.825, --0.85,
+			0
+		}
+DamageProfileTemplates.crossbow_bolt.armor_modifier_far.attack = {
+			1,
+			0.8,
+			1.5,
+			1,
+			0.825, --0.85,
+			0
+		}
+--------------------------DRAKEFIRE PISTOL--------------------------------
+
+DamageProfileTemplates.shot_drakefire.critical_strike.attack_armor_power_modifer = {
+			1,
+			0.25,
+			1.5,
+			1,
+			1,
+			0.25
+		}
+DamageProfileTemplates.shot_drakefire.armor_modifier_near.attack = {
+			1,
+			0.25,
+			1.5,
+			1,
+			1,
+			0
+		}
+DamageProfileTemplates.shot_drakefire.armor_modifier_far.attack = {
+			1,
+			0.25,
+			1.5,
+			1,
+			1,
+			0
+		}
+--------------------------DUAL AXE----------------------------------------
+
+Weapons.dual_wield_axes_template_1.block_fatigue_point_multiplier = 0.25
+Weapons.dual_wield_axes_template_1.actions.action_one.push.fatigue_cost = "action_stun_push"
+Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_bopp.damage_profile_left = "dual_axe_bopp"
+Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_bopp.damage_profile_right = "dual_axe_bopp"
+Weapons.dual_wield_axes_template_1.block_angle = 40
+Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack.damage_profile_left = "dual_axe_heavy"
+Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack.damage_profile_right = "dual_axe_heavy"
+Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack_2.damage_profile_left = "dual_axe_heavy"
+Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack_2.damage_profile_right = "dual_axe_heavy"
+Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack_3.damage_profile_left = "dual_axe_heavy_shield_break"
+Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack_3.damage_profile_right = "dual_axe_heavy_shield_break"
+Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_back_right.damage_profile = "dual_axe_light"
+Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_back_left.damage_profile = "dual_axe_light"
+Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_left.damage_profile = "dual_axe_light"
+Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_right.damage_profile = "dual_axe_light"
+--------------------------TROLLHAMMER TORPEDO-----------------------------
+--remove grenadier interaction
+ActionGrenadeThrower.client_owner_post_update = function (self, dt, t, world, can_damage)
+	if self.state == "waiting_to_shoot" and self.time_to_shoot <= t then
+		self.state = "shooting"
+	end
+
+	if self.state == "shooting" then
+		local owner_unit = self.owner_unit
+
+		if not Managers.player:owner(self.owner_unit).bot_player then
+			Managers.state.controller_features:add_effect("rumble", {
+				rumble_effect = "crossbow_fire"
+			})
+		end
+
+		local first_person_extension = ScriptUnit.extension(owner_unit, "first_person_system")
+		local position, rotation = first_person_extension:get_projectile_start_position_rotation()
+		local spread_extension = self.spread_extension
+		local current_action = self.current_action
+
+		if spread_extension then
+			rotation = spread_extension:get_randomised_spread(rotation)
+
+			spread_extension:set_shooting()
+		end
+
+		local angle = ActionUtils.pitch_from_rotation(rotation)
+		local speed = current_action.speed
+		local target_vector = Vector3.normalize(Vector3.flat(Quaternion.forward(rotation)))
+		local lookup_data = current_action.lookup_data
+
+		ActionUtils.spawn_player_projectile(owner_unit, position, rotation, 0, angle, target_vector, speed, self.item_name, lookup_data.item_template_name, lookup_data.action_name, lookup_data.sub_action_name, self._is_critical_strike, self.power_level)
+
+		local fire_sound_event = self.current_action.fire_sound_event
+
+		if fire_sound_event then
+			first_person_extension:play_hud_sound_event(fire_sound_event)
+		end
+
+		if self.ammo_extension and not self.extra_buff_shot then
+			local ammo_usage = current_action.ammo_usage
+			--[[local _, procced = self.owner_buff_extension:apply_buffs_to_value(0, "not_consume_grenade")
+
+			if procced then
+				self.ammo_extension:add_ammo_to_reserve(ammo_usage)
+			end]]
+
+			self.ammo_extension:use_ammo(ammo_usage)
+		end
+
+		local procced = self:_check_extra_shot_proc(self.owner_buff_extension)
+		local add_spread = not self.extra_buff_shot
+
+		if procced then
+			self.state = "waiting_to_shoot"
+			self.time_to_shoot = t + 0.1
+			self.extra_buff_shot = true
+		else
+			self.state = "shot"
+		end
+
+		first_person_extension:reset_aim_assist_multiplier()
+	end
+
+	if self.state == "shot" and self.active_reload_time then
+		local owner_unit = self.owner_unit
+		local input_extension = ScriptUnit.extension(owner_unit, "input_system")
+
+		if self.active_reload_time < t then
+			local ammo_extension = self.ammo_extension
+
+			if (input_extension:get("weapon_reload") or input_extension:get_buffer("weapon_reload")) and ammo_extension:can_reload() then
+				local status_extension = ScriptUnit.extension(self.owner_unit, "status_system")
+
+				status_extension:set_zooming(false)
+
+				local weapon_extension = ScriptUnit.extension(self.weapon_unit, "weapon_system")
+
+				weapon_extension:stop_action("reload")
+			end
+		elseif input_extension:get("weapon_reload") then
+			input_extension:add_buffer("weapon_reload", 0)
+		end
+	end
+end
+--remove shrapnel interaction
+ExplosionTemplates.dr_deus_01.explosion.attack_type = nil
+Weapons.dr_deus_01_template_1.actions.action_one.default.impact_data.is_torpedo = true
+--____________________________________________________________________________________
+--$$\   $$\                    $$\ $$\ $$\ $$\                     
+--$$ | $$  |                   \__|$$ |$$ |\__|                    
+--$$ |$$  / $$$$$$\   $$$$$$\  $$\ $$ |$$ |$$\  $$$$$$\  $$$$$$$\  
+--$$$$$  / $$  __$$\ $$  __$$\ $$ |$$ |$$ |$$ | \____$$\ $$  __$$\ 
+--$$  $$<  $$$$$$$$ |$$ |  \__|$$ |$$ |$$ |$$ | $$$$$$$ |$$ |  $$ |
+--$$ |\$$\ $$   ____|$$ |      $$ |$$ |$$ |$$ |$$  __$$ |$$ |  $$ |
+--$$ | \$$\\$$$$$$$\ $$ |      $$ |$$ |$$ |$$ |\$$$$$$$ |$$ |  $$ |
+--\__|  \__|\_______|\__|      \__|\__|\__|\__| \_______|\__|  \__|
+--____________________________________________________________________________________  
+---------------------------MOONFIRE BOW-----------------------------------
+-----EXPERIMENTAL MOONBOW
+Weapons.we_deus_01_template_1.actions.action_one.default.impact_data.damage_profile = "we_deus_01_small"
+Weapons.we_deus_01_template_1.actions.action_one.default.drain_amount = 4.1
+Weapons.we_deus_01_template_1.actions.action_one.shoot_special_charged.impact_data.damage_profile = "we_deus_01_med"
+DamageProfileTemplates.we_deus_01_small_explosion.default_target.dot_template_name = "we_deus_01_small" --"we_deus_01_dot_med"
+DamageProfileTemplates.we_deus_01_large_explosion.default_target.dot_template_name = "we_deus_01_dot_med"
+DamageProfileTemplates.we_deus_01_small_explosion_glance.default_target.dot_template_name = "we_deus_01_small" --"we_deus_01_dot_med"
+DamageProfileTemplates.we_deus_01_large_explosion_glance.default_target.dot_template_name = "we_deus_01_dot_med"
+DotTypeLookup.we_deus_01_dot_small = "burning_dot"
+DotTypeLookup.we_deus_01_dot_med = "burning_dot"
+---------------------------ELGI AXE---------------------------------------
+--movespeed/crit chance
 Weapons.we_one_hand_axe_template.actions.action_one.light_attack_bopp.additional_critical_strike_chance = 0.1
 Weapons.we_one_hand_axe_template.actions.action_one.light_attack_bopp.buff_data = {
 				{
@@ -425,7 +671,7 @@ Weapons.we_one_hand_axe_template.actions.action_one.light_attack_left.buff_data 
 					buff_name = "planted_decrease_movement"
 				}
 			}
---Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right.additional_critical_strike_chance = 0.1
+
 Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right.buff_data = {
 				{
 					start_time = 0,
@@ -458,19 +704,8 @@ Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right_last.buff
 					buff_name = "planted_decrease_movement"
 				}
 			}
-			--COMBO CHANGES
-
-
---[[Weapons.we_one_hand_axe_template.actions.action_one.light_attack_left.allowed_chain_actions[1].sub_action = "default_last"
-Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right_last.allowed_chain_actions[1].sub_action = "default_left"
-Weapons.we_one_hand_axe_template.actions.action_one.default_left.allowed_chain_actions[1].sub_action = "light_attack_last" --
-Weapons.we_one_hand_axe_template.actions.action_one.light_attack_last.allowed_chain_actions[1].sub_action = "default_right"
-Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right.allowed_chain_actions[1].sub_action = "default"
-Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right.allowed_chain_actions[1].start_time = 0.675
-Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right.allowed_chain_actions[2].start_time = 0.675]]
+--COMBO CHANGES
 Weapons.we_one_hand_axe_template.actions.action_one.light_attack_bopp.allowed_chain_actions[1].sub_action = "default_left"
---[[Weapons.we_one_hand_axe_template.actions.action_one.heavy_attack_right.allowed_chain_actions[1].start_time = 0.6
-Weapons.we_one_hand_axe_template.actions.action_one.heavy_attack_right.allowed_chain_actions[2].start_time = 0.6]]
 --DMG PROFILE CHANGES
 Weapons.we_one_hand_axe_template.actions.action_one.light_attack_left.damage_profile = "elf_oneH_axe_diag" --"onehanded_axe_light_last_new"
 Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right_last.damage_profile = "elf_oneH_axe_diag" --"onehanded_axe_light_last_new"
@@ -479,120 +714,14 @@ Weapons.we_one_hand_axe_template.actions.action_one.light_attack_last.damage_pro
 Weapons.we_one_hand_axe_template.actions.action_one.light_attack_bopp.damage_profile = "elf_oneH_axe_push_attack_shieldbreak"
 --ANIMATION CHANGES
 Weapons.we_one_hand_axe_template.actions.action_one.light_attack_bopp.anim_event = "attack_swing_down_right"
---Weapons.we_one_hand_axe_template.actions.action_one.light_attack_right_last.anim_event = "attack_swing_right_diagonal"
-----------------------------ELGI GREATSWORD-----------------------------------------
+---------------------------ELGI GREATSWORD--------------------------------
 --DamageProfileTemplates.heavy_slashing_smiter_stab.shield_break = true
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_second.damage_profile = "heavy_slashing_linesman"
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_second.hit_mass_count = HEAVY_LINESMAN_HIT_MASS_COUNT
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_second.slide_armour_hit = true
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.buff_data[2].external_multiplier = 1.25
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.ignore_armour_hit = true
------------------------------SALTZ FLAIL-----------------------------------------
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.damage_profile = "saltz_flail_bopp"
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.hit_mass_count = nil
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.ignore_armour_hit = true
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.damage_profile = "saltz_flail_downward_swing"
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.damage_profile = "saltz_flail_downward_swing"
------------------------------FIRE SWORD-----------------------------------------
-
-Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_left.damage_profile = "firesword_heavy2_new"
-Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_left.hit_mass_count = HEAVY_LINESMAN_HIT_MASS_COUNT
-Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_left.slide_armour_hit = true
---Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_spell.damage_profile_target = "dagger_burning_slam_target_fencer"
---Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_spell.damage_profile_aoe = "dagger_burning_slam_fencer_aoe"
---Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_spell.damage_profile = "dagger_burning_slam_fencer"
---[[Weapons.flaming_sword_template_1.attack_meta_data.tap_attack = {
-	penetrating = false,
-	arc = 1
-}
-Weapons.flaming_sword_template_1.attack_meta_data.hold_attack = {
-	penetrating = true,
-	arc = 1
-}]]
---Weapons.flaming_sword_template_1.actions.action_one.light_attack_left.damage_profile = "firesword_slashlights"
---Weapons.flaming_sword_template_1.actions.action_one.light_attack_right.damage_profile = "firesword_slashlights"
-Weapons.flaming_sword_template_1.actions.action_one.light_attack_bopp.damage_profile = "light_slashing_linesman" --"firesword_slashlights"
-Weapons.flaming_sword_template_1.actions.action_one.light_attack_stab.damage_profile = "firesword_stablight"
-Weapons.flaming_sword_template_1.actions.action_one.light_attack_stab.ignore_armour_hit = true
----------------------------EMPIRE LONGBOW-----------------------------------------
---Weapons.longbow_empire_template.actions.action_two.default.heavy_aim_flow_event = nil
-Weapons.longbow_empire_template.actions.action_two.default.aim_zoom_delay = nil
-Weapons.longbow_empire_template.actions.action_two.default.default_zoom = "first_person_node"
-Weapons.longbow_empire_template.actions.action_two.default.buffed_zoom_thresholds = {
-				"first_person_node",
-				"zoom_in",
-				"increased_zoom_in"
-			}
---------------------------REPEATER HANDGUN-----------------------------------------
-Weapons.repeating_handgun_template_1.actions.action_two.default.default_zoom = "first_person_node"
-Weapons.repeating_handgun_template_1.actions.action_two.default.zoom_condition_function = function ()
-				return true
-			end
-Weapons.repeating_handgun_template_1.actions.action_two.default.unzoom_condition_function = function (end_reason)
-				return end_reason ~= "new_interupting_action"
-			end
-Weapons.repeating_handgun_template_1.actions.action_two.default.buffed_zoom_thresholds = {
-				"first_person_node",
-				"zoom_in"
-			}
-Weapons.repeating_handgun_template_1.actions.action_two.spray_loop.default_zoom = "first_person_node"
-Weapons.repeating_handgun_template_1.actions.action_two.spray_loop.zoom_condition_function = function ()
-				return true
-			end
-Weapons.repeating_handgun_template_1.actions.action_two.spray_loop.unzoom_condition_function = function (end_reason)
-				return end_reason ~= "new_interupting_action"
-			end
-Weapons.repeating_handgun_template_1.actions.action_two.spray_loop.buffed_zoom_thresholds = {
-				"first_person_node",
-				"zoom_in"
-			}
-SpreadTemplates.repeating_handgun = {
-		continuous = {
-			still = {
-				max_yaw = 0.6,
-				max_pitch = 0.6
-			},
-			moving = {
-				max_yaw = 1.5,
-				max_pitch = 1.5
-			},
-			crouch_still = {
-				max_yaw = 0.5,
-				max_pitch = 0.5
-			},
-			crouch_moving = {
-				max_yaw = 0.75,
-				max_pitch = 0.75
-			},
-			zoomed_still = {
-				max_yaw = 0.6,
-				max_pitch = 0.6
-			},
-			zoomed_moving = {
-				max_yaw = 1.5,
-				max_pitch = 1.5
-			},
-			zoomed_crouch_still = {
-				max_yaw = 0.5,
-				max_pitch = 0.5
-			},
-			zoomed_crouch_moving = {
-				max_yaw = 0.75,
-				max_pitch = 0.75
-			}
-		},
-		immediate = {
-			being_hit = {
-				immediate_pitch = 1.4,
-				immediate_yaw = 1.4
-			},
-			shooting = {
-				immediate_pitch = 1,
-				immediate_yaw = 1
-			}
-		}
-}
------------------------------JAVELIN -----------------------------------------
+---------------------------JAVELIN ---------------------------------------
 
 SpreadTemplates.javelin = {
 		continuous = {
@@ -1252,162 +1381,17 @@ PlayerProjectileUnitExtension.hit_enemy = function (self, impact_data, hit_unit,
 		self._num_additional_penetrations = self._num_additional_penetrations - 1
 	end
 end
-----------------------------SIENNA MACE-----------------------------------------
-
---[[Weapons.one_handed_hammer_wizard_template_1.actions.action_one.default.allowed_chain_actions[1].sub_action = "light_attack_left"
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.allowed_chain_actions[1].start_time = 0.65
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.allowed_chain_actions[1].sub_action = "default_left"
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.default_last.allowed_chain_actions[1].sub_action = "light_attack_last"
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.allowed_chain_actions[1].sub_action = "default_left"
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions[1].sub_action = "default_last"
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions[1].start_time = 0.45
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.anim_event = "attack_swing_heavy_left_diagonal"
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 0.9 * 0.85
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.damage_window_start = 0.15
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.damage_window_end = 0.3
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.damage_profile = "light_blunt_smiter"
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_left.allowed_chain_actions[1].sub_action = "default_right"
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_left.allowed_chain_actions[1].start_time = 0.65
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_left.allowed_chain_actions[2].start_time = 0.65]]
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.allowed_chain_actions[1].sub_action = "default_left"
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.allowed_chain_actions[1].start_time = 0.7
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.allowed_chain_actions[2].sub_action = "default_left"
-
---[[Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_last.buff_data[1].external_multiplier = 1.1
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_last.buff_data[2].external_multiplier = 1]]
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.additional_critical_strike_chance = 0.1
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.buff_data[1].external_multiplier = 1
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.buff_data[1].end_time = 0.25
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.buff_data[2] = {
-					start_time = 0.25,
-					external_multiplier = 0.8,
-					end_time = 0.5,
-					buff_name = "planted_decrease_movement"
-				}
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack.buff_data[1].external_multiplier = 1.9
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack.buff_data[1].end_time = 0.3
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_left.buff_data[1].external_multiplier = 1.9
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_left.buff_data[1].end_time = 0.3
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_right_up.buff_data[1].external_multiplier = 1.9
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_right_up.buff_data[1].end_time = 0.3
-
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.buff_data[1].external_multiplier = 1.2
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.buff_data[1].end_time = 0.3
-
---dmg profile changes
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_right.damage_profile = "sienna_mace_light_diag"
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.damage_profile = "sienna_mace_light_diag"
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.damage_profile = "sienna_mace_push_attack"
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.damage_profile = "sienna_mace_light_smiter"
-Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_last.damage_profile = "sienna_mace_light_smiter"
---------------------------SIENNA DAGGER-----------------------------------------
-Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.damage_profile = "sienna_dagger_poke"
-Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.damage_profile = "sienna_dagger_poke_burn"
---Weapons.one_handed_daggers_template_1.block_angle = 90
---Weapons.one_handed_daggers_template_1.dodge_count = 4
-Weapons.one_handed_daggers_template_1.actions.action_one.default_right_heavy.allowed_chain_actions[2].start_time = 0.3
-Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.allowed_chain_actions[1].start_time = 0.3
-Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.allowed_chain_actions[2].start_time = 0.3
-Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.damage_profile = "sienna_dagger_heavy_stab"
-Weapons.one_handed_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
-Weapons.one_handed_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
-Weapons.one_handed_daggers_template_1.block_fatigue_point_multiplier = 0.25
-
---------------------------1H HAMMER AND MACE-----------------------------------------
---kruber
-Weapons.one_handed_hammer_template_1.actions.action_one.light_attack_left.damage_profile = "oneH_hammer_light_new"
-Weapons.one_handed_hammer_template_1.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
-Weapons.one_handed_hammer_template_1.actions.action_one.light_attack_bopp.damage_profile = "oneH_hammer_push_attack_new"
---bardin
-Weapons.one_handed_hammer_template_2.actions.action_one.light_attack_left.damage_profile = "oneH_hammer_light_new"
-Weapons.one_handed_hammer_template_2.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
-Weapons.one_handed_hammer_template_2.actions.action_one.light_attack_bopp.damage_profile = "oneH_hammer_push_attack_new"
---------------------------1H SWORD-----------------------------------------
-Weapons.one_handed_swords_template_1.actions.action_one.light_attack_last.additional_critical_strike_chance = 0.1
-Weapons.one_handed_swords_template_1.actions.action_one.light_attack_last.damage_profile = "oneH_sword_light_last_new"
---------------------------HALBERD-----------------------------------------
-Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.hit_mass_count = LINESMAN_HIT_MASS_COUNT
-Weapons.two_handed_halberds_template_1.block_angle = 180
-Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.damage_profile = "halberd_heavy_left"
---------------------------BRETON SNS-----------------------------------------
-Weapons.one_handed_sword_shield_template_2.actions.action_one.light_attack_right.damage_profile = "breton_SnS_right"
---------------------------Glaive-----------------------------------------
+---------------------------GLAIVE-----------------------------------------
 --Weapons.two_handed_axes_template_2.actions.action_one.light_attack_left_upward.hit_mass_count = nil
 Weapons.two_handed_axes_template_2.actions.action_one.light_attack_bopp.hit_mass_count = LINESMAN_HIT_MASS_COUNT
---------------------------ELF 1H SWORD-----------------------------------------
+---------------------------ELF 1H SWORD-----------------------------------
+
 Weapons.we_one_hand_sword_template_1.actions.action_one.light_attack_last.additional_critical_strike_chance = 0.1
 Weapons.we_one_hand_sword_template_1.actions.action_one.light_attack_last.ignore_armour_hit = true
 Weapons.we_one_hand_sword_template_1.actions.action_one.heavy_attack_up.damage_profile = "elf_oneH_sword_heavy_up"
 Weapons.we_one_hand_sword_template_1.actions.action_one.heavy_attack_up.hit_mass_count = LINESMAN_HIT_MASS_COUNT
---------------------------BILLHOOK-----------------------------------------
-Weapons.two_handed_billhooks_template.block_angle = 180
-Weapons.two_handed_billhooks_template.buffs.change_dodge_distance.external_optional_multiplier = 1.1
-Weapons.two_handed_billhooks_template.buffs.change_dodge_speed.external_optional_multiplier = 1.1
---------------------------AXE AND FALCHION-----------------------------------------
-Weapons.dual_wield_axe_falchion_template.actions.action_one.light_attack_right.damage_profile = "oneH_axe_flat"
-Weapons.dual_wield_axe_falchion_template.dodge_count = 3
-Weapons.dual_wield_axe_falchion_template.buffs.change_dodge_distance.external_optional_multiplier = 1.15
-Weapons.dual_wield_axe_falchion_template.buffs.change_dodge_speed.external_optional_multiplier = 1.15
---------------------------CROSSBOW-----------------------------------------
-DamageProfileTemplates.crossbow_bolt.critical_strike.attack_armor_power_modifer = {
-			1,
-			0.8,
-			1.5,
-			1,
-			0.85,
-			0.25
-		}
-DamageProfileTemplates.crossbow_bolt.armor_modifier_near.attack = {
-			1,
-			0.8,
-			1.5,
-			1,
-			0.85,
-			0
-		}
-DamageProfileTemplates.crossbow_bolt.armor_modifier_far.attack = {
-			1,
-			0.8,
-			1.5,
-			1,
-			0.85,
-			0
-		}
---------------------------DRAKEFIRE PISTOL-----------------------------------------
-DamageProfileTemplates.shot_drakefire.critical_strike.attack_armor_power_modifer = {
-			1,
-			0.25,
-			1.5,
-			1,
-			1,
-			0.25
-		}
-DamageProfileTemplates.shot_drakefire.armor_modifier_near.attack = {
-			1,
-			0.25,
-			1.5,
-			1,
-			1,
-			0
-		}
-DamageProfileTemplates.shot_drakefire.armor_modifier_far.attack = {
-			1,
-			0.25,
-			1.5,
-			1,
-			1,
-			0
-		}
---------------------------SWIFT BOW-----------------------------------------
+---------------------------SWIFT BOW--------------------------------------
+
 DamageProfileTemplates.arrow_machinegun.critical_strike.attack_armor_power_modifer = {
 			1,
 			0.25,
@@ -1432,16 +1416,13 @@ DamageProfileTemplates.arrow_machinegun.armor_modifier_far.attack = {
 			1,
 			0
 		}
--------------------------- SALTZ VOLLEY CROSSBOW-----------------------------------------
-Weapons.repeating_crossbow_template_1.ammo_data.reload_time = 3
--------------------------- ELF VOLLEY CROSSBOW-----------------------------------------
+---------------------------ELF VOLLEY CROSSBOW----------------------------
+
 Weapons.repeating_crossbow_elf_template.default_spread_template = "repeating_crossbow_elf"
 Weapons.repeating_crossbow_elf_template.actions.action_one.default.cooldown = 0.4
 Weapons.repeating_crossbow_elf_template.actions.action_one.default.allowed_chain_actions[2].start_time = 0.4
 Weapons.repeating_crossbow_elf_template.actions.action_one.default.allowed_chain_actions[3].start_time = 0.4
 Weapons.repeating_crossbow_elf_template.actions.action_one.default.allowed_chain_actions[4].start_time = 0.4
---Weapons.repeating_crossbow_elf_template.actions.action_one.zoomed_shot.spread_template_override = "repeating_crossbow_elf"
---Weapons.repeating_crossbow_elf_template.actions.action_two.default.spread_template_override = "repeating_crossbow_elf"
 SpreadTemplates.repeating_crossbow_elf = {
 		continuous = {
 			still = {
@@ -1488,7 +1469,63 @@ SpreadTemplates.repeating_crossbow_elf = {
 			}
 		}
 	}
---------------------------REPEATER PISTOL-----------------------------------------
+---------------------------SWORD AND DAGGER-------------------------------
+
+Weapons.dual_wield_sword_dagger_template_1.actions.action_one.push.fatigue_cost = nil
+Weapons.dual_wield_sword_dagger_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.15
+Weapons.dual_wield_sword_dagger_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.dual_wield_sword_dagger_template_1.actions.action_one.heavy_attack_2.additional_critical_strike_chance = nil
+Weapons.dual_wield_sword_dagger_template_1.block_fatigue_point_multiplier = 0.5
+Weapons.dual_wield_sword_dagger_template_1.dodge_count = 3
+--combo timing changes
+Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_right_second.allowed_chain_actions[1].start_time = 0.4515
+Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_right_first.allowed_chain_actions[1].start_time = 0.3465
+Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.allowed_chain_actions[1].start_time = 0.4515
+Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_last.allowed_chain_actions[1].start_time = 0.7875
+---------------------------DUAL DAGGERS-----------------------------------
+
+Weapons.dual_wield_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.dual_wield_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
+Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.ignore_armour_hit = true
+Weapons.dual_wield_daggers_template_1.block_fatigue_point_multiplier = 0.25
+Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.range_mod = 1.25
+Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.allowed_chain_actions[3].start_time = 0.4
+--____________________________________________________________________________________
+-- $$$$$$\            $$\   $$\                                                       
+--$$  __$$\           $$ |  $$ |                                                      
+--$$ /  \__| $$$$$$\  $$ |$$$$$$\   $$$$$$$$\  $$$$$$\  $$\   $$\  $$$$$$\   $$$$$$\  
+--\$$$$$$\   \____$$\ $$ |\_$$  _|  \____$$  |$$  __$$\ $$ |  $$ |$$  __$$\ $$  __$$\ 
+-- \____$$\  $$$$$$$ |$$ |  $$ |      $$$$ _/ $$ /  $$ |$$ |  $$ |$$ |  \__|$$$$$$$$ |
+--$$\   $$ |$$  __$$ |$$ |  $$ |$$\  $$  _/   $$ |  $$ |$$ |  $$ |$$ |      $$   ____|
+--\$$$$$$  |\$$$$$$$ |$$ |  \$$$$  |$$$$$$$$\ $$$$$$$  |\$$$$$$$ |$$ |      \$$$$$$$\ 
+-- \______/  \_______|\__|   \____/ \________|$$  ____/  \____$$ |\__|       \_______|
+--                                            $$ |      $$\   $$ |                    
+--                                            $$ |      \$$$$$$  |                    
+--                                            \__|       \______/ 
+--____________________________________________________________________________________
+---------------------------SALTZ FLAIL------------------------------------
+
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.damage_profile = "saltz_flail_bopp"
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.hit_mass_count = nil
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.ignore_armour_hit = true
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.damage_profile = "saltz_flail_downward_swing"
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.damage_profile = "saltz_flail_downward_swing"
+---------------------------BILLHOOK---------------------------------------
+
+Weapons.two_handed_billhooks_template.block_angle = 180
+Weapons.two_handed_billhooks_template.buffs.change_dodge_distance.external_optional_multiplier = 1.1
+Weapons.two_handed_billhooks_template.buffs.change_dodge_speed.external_optional_multiplier = 1.1
+---------------------------AXE AND FALCHION-------------------------------
+
+Weapons.dual_wield_axe_falchion_template.actions.action_one.light_attack_right.damage_profile = "oneH_axe_flat"
+Weapons.dual_wield_axe_falchion_template.dodge_count = 3
+Weapons.dual_wield_axe_falchion_template.buffs.change_dodge_distance.external_optional_multiplier = 1.15
+Weapons.dual_wield_axe_falchion_template.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+---------------------------SALTZ VOLLEY CROSSBOW--------------------------
+
+Weapons.repeating_crossbow_template_1.ammo_data.reload_time = 3
+---------------------------REPEATER PISTOL--------------------------------
+
 local repeating_pistol_dropoff_ranges = {
 	dropoff_start = 12.5,
 	dropoff_end = 30
@@ -1496,7 +1533,7 @@ local repeating_pistol_dropoff_ranges = {
 Weapons.repeating_pistol_template_1.ammo_data.max_ammo = 54 --56
 DamageProfileTemplates.shot_machinegun.critical_strike.attack_armor_power_modifer = {
 			1.05,
-			0.8,
+			0.7875, --0.8,
 			1.35,
 			1.05,
 			1.05,
@@ -1504,7 +1541,7 @@ DamageProfileTemplates.shot_machinegun.critical_strike.attack_armor_power_modife
 		}
 DamageProfileTemplates.shot_machinegun.armor_modifier_near.attack = {
 			1.05,
-			0.55,
+			0.525, --0.55,
 			1.35,
 			1.05,
 			1.05,
@@ -1566,65 +1603,7 @@ SpreadTemplates.repeating_handgun_special = {
 			}
 		}
 	}
---[[SpreadTemplates.repeating_pistol.continuous.still = {
-	max_yaw = 0.4,
-	max_pitch = 0.4
-}
-SpreadTemplates.repeating_pistol.continuous.crouch_still = {
-	max_yaw = 0.4,
-	max_pitch = 0.4
-}]]
---------------------------SWORD AND MACE-----------------------------------------
-Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_left_diagonal.damage_profile = "oneH_hammer_light_new"
-Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
-Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_left_diagonal.hit_mass_count = TANK_HIT_MASS_COUNT
-Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_right.hit_mass_count = TANK_HIT_MASS_COUNT
-
-Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.hit_mass_count = nil
-Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.hit_mass_count = nil
-Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.damage_profile_left = "dual_sword_mace_heavy"
-Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.damage_profile_left = "dual_sword_mace_heavy"
-Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.damage_profile_right = "dual_sword_mace_heavy"
-Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.damage_profile_right = "dual_sword_mace_heavy"
---------------------------DUAL AXE-----------------------------------------
-Weapons.dual_wield_axes_template_1.block_fatigue_point_multiplier = 0.25
-Weapons.dual_wield_axes_template_1.actions.action_one.push.fatigue_cost = "action_stun_push"
-Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_bopp.damage_profile_left = "dual_axe_bopp"
-Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_bopp.damage_profile_right = "dual_axe_bopp"
-Weapons.dual_wield_axes_template_1.block_angle = 40
-Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack.damage_profile_left = "dual_axe_heavy"
-Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack.damage_profile_right = "dual_axe_heavy"
-Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack_2.damage_profile_left = "dual_axe_heavy"
-Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack_2.damage_profile_right = "dual_axe_heavy"
-Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack_3.damage_profile_left = "dual_axe_heavy_shield_break"
-Weapons.dual_wield_axes_template_1.actions.action_one.heavy_attack_3.damage_profile_right = "dual_axe_heavy_shield_break"
-Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_back_right.damage_profile = "dual_axe_light"
-Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_back_left.damage_profile = "dual_axe_light"
-Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_left.damage_profile = "dual_axe_light"
-Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_right.damage_profile = "dual_axe_light"
---------------------------SWORD AND DAGGER-----------------------------------------
-Weapons.dual_wield_sword_dagger_template_1.actions.action_one.push.fatigue_cost = nil
-Weapons.dual_wield_sword_dagger_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.15
-Weapons.dual_wield_sword_dagger_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.15
-Weapons.dual_wield_sword_dagger_template_1.actions.action_one.heavy_attack_2.additional_critical_strike_chance = nil
-Weapons.dual_wield_sword_dagger_template_1.block_fatigue_point_multiplier = 0.5
-Weapons.dual_wield_sword_dagger_template_1.dodge_count = 3
---combo timing changes
-Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_right_second.allowed_chain_actions[1].start_time = 0.4515
-Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_right_first.allowed_chain_actions[1].start_time = 0.3465
-Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.allowed_chain_actions[1].start_time = 0.4515
-Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_last.allowed_chain_actions[1].start_time = 0.7875
---------------------------DUAL DAGGERS-----------------------------------------
---Weapons.dual_wield_daggers_template_1.block_angle = 90
-Weapons.dual_wield_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
-Weapons.dual_wield_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
-Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.ignore_armour_hit = true
-Weapons.dual_wield_daggers_template_1.block_fatigue_point_multiplier = 0.25
-Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.range_mod = 1.25
-Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.allowed_chain_actions[3].start_time = 0.4
---Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.anim_time_scale = 1 * 2
---Weapons.dual_wield_daggers_template_1.actions.action_one.push_stab.damage_profile = "dual_dagger_push_stab"
---------------------------RAPIER-----------------------------------------
+---------------------------RAPIER-----------------------------------------
 
 Weapons.fencing_sword_template_1.block_angle = 40
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions[6] = {
@@ -1633,168 +1612,106 @@ Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.allowed_ch
 	action = "action_wield",
 	input = "action_wield"
 }
---PlayerUnitStatusSettings.fatigue_point_costs.weapon_special_ranged_cost = 0.5
---Weapons.fencing_sword_template_1.actions.action_three.block_shot.fatigue_cost = "weapon_special_ranged_cost"
---Weapons.fencing_sword_template_1.actions.action_three.block_shot.fatigue_cost_on_shot = true
---[[ActionHandgun.client_owner_post_update = function (self, dt, t, world, can_damage)
-	local weapon_unit = self.weapon_unit
-	local owner_unit = self.owner_unit
-	local current_action = self.current_action
-	local buff_extension = ScriptUnit.extension(owner_unit, "buff_system")
-	self._status_extension = ScriptUnit.extension(owner_unit, "status_system")
+--____________________________________________________________________________________
+-- $$$$$$\  $$\                                         
+--$$  __$$\ \__|                                        
+--$$ /  \__|$$\  $$$$$$\  $$$$$$$\  $$$$$$$\   $$$$$$\  
+--\$$$$$$\  $$ |$$  __$$\ $$  __$$\ $$  __$$\  \____$$\ 
+-- \____$$\ $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ | $$$$$$$ |
+--$$\   $$ |$$ |$$   ____|$$ |  $$ |$$ |  $$ |$$  __$$ |
+--\$$$$$$  |$$ |\$$$$$$$\ $$ |  $$ |$$ |  $$ |\$$$$$$$ |
+-- \______/ \__| \_______|\__|  \__|\__|  \__| \_______|
+--____________________________________________________________________________________ 
+---------------------------CROWBILL --------------------------------------
 
-	if self.state == "waiting_to_shoot" and self.time_to_shoot <= t then
-		self.state = "shooting"
+Weapons.one_handed_crowbill.actions.action_one.heavy_attack_right_up.additional_critical_strike_chance = 0.15
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.damage_window_start = 0.32
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.hit_armor_anim = "attack_hit_shield"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.range_mod = 1.25
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.sweep_z_offset = 0.15
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.width_mod = 30
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.no_damage_impact_sound_event = "fire_hit_armour"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.hit_effect = "melee_hit_sword_1h"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.damage_profile = "crowbill_push_attack_new"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.damage_window_end = 0.47
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.impact_sound_event = "fire_hit"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.dedicated_target_range = 3
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.anim_event = "attack_swing_up"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_bopp.allowed_chain_actions[1].sub_action = "default_right"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_upper.allowed_chain_actions[1].start_time = 0.6
+Weapons.one_handed_crowbill.actions.action_one.light_attack_left.additional_critical_strike_chance = 0.1
+Weapons.one_handed_crowbill.dodge_count = 4
+Weapons.one_handed_crowbill.actions.action_one.heavy_attack.damage_profile = "crowbill_heavy_upper"
+Weapons.one_handed_crowbill.actions.action_one.heavy_attack_left.damage_profile = "crowbill_heavy_flat"
+--dmg profile CHANGES
+Weapons.one_handed_crowbill.actions.action_one.light_attack_left.damage_profile = "crowbill_light_stab_burn"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_right.damage_profile = "crowbill_light_diag"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_last.damage_profile = "crowbill_light_smiter"
+Weapons.one_handed_crowbill.actions.action_one.light_attack_upper.damage_profile = "crowbill_light_flat"
+---------------------------FLAMESTORM-------------------------------------
 
-		if self.ammo_extension and not self.extra_buff_shot and self.ammo_usage then
-			local ammo_usage = self.ammo_usage
+Weapons.staff_flamethrower_template.actions.action_one.default.spray_range = 16
+Weapons.staff_flamethrower_template.actions.action_two.default.charge_time = 2
+---------------------------FIRE SWORD-------------------------------------
 
-			self.ammo_extension:use_ammo(ammo_usage)
-		end
+Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_left.damage_profile = "firesword_heavy2_new"
+Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_left.hit_mass_count = HEAVY_LINESMAN_HIT_MASS_COUNT
+Weapons.flaming_sword_template_1.actions.action_one.heavy_attack_left.slide_armour_hit = true
+Weapons.flaming_sword_template_1.actions.action_one.light_attack_bopp.damage_profile = "light_slashing_linesman"
+Weapons.flaming_sword_template_1.actions.action_one.light_attack_stab.damage_profile = "firesword_stablight"
+Weapons.flaming_sword_template_1.actions.action_one.light_attack_stab.ignore_armour_hit = true
+---------------------------SIENNA MACE------------------------------------
 
-		local overcharge_type = self.overcharge_type
+--combo changes/timing
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.allowed_chain_actions[1].sub_action = "default_left"
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.allowed_chain_actions[1].start_time = 0.7
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.allowed_chain_actions[2].sub_action = "default_left"
 
-		if overcharge_type then
-			local overcharge_amount = PlayerUnitStatusSettings.overcharge_values[overcharge_type] * (self.charge_multiplier or 1)
-			local buff_extension = ScriptUnit.extension(owner_unit, "buff_system")
+--movespeed/crit chance
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.additional_critical_strike_chance = 0.1
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.buff_data[1].external_multiplier = 1
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.buff_data[1].end_time = 0.25
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.buff_data[2] = {
+	start_time = 0.25,
+	external_multiplier = 0.8,
+	end_time = 0.5,
+	buff_name = "planted_decrease_movement"
+}
 
-			if self._is_critical_strike and buff_extension:has_buff_perk("no_overcharge_crit") then
-				overcharge_amount = 0
-			end
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack.buff_data[1].external_multiplier = 1.9
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack.buff_data[1].end_time = 0.3
 
-			self.overcharge_extension:add_charge(overcharge_amount)
-		end
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_left.buff_data[1].external_multiplier = 1.9
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_left.buff_data[1].end_time = 0.3
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_right_up.buff_data[1].external_multiplier = 1.9
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.heavy_attack_right_up.buff_data[1].end_time = 0.3
 
-		if self.uses_ability_cooldown then
-			self.career_extension:reduce_activated_ability_cooldown(-self.ammo_usage)
-		end
-	end
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.buff_data[1].external_multiplier = 1.2
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.buff_data[1].end_time = 0.3
 
-	if self.state == "shooting" then
-		local procced = self:_check_extra_shot_proc(self.owner_buff_extension)
-		local add_spread = not self.extra_buff_shot
+--dmg profile changes
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_right.damage_profile = "sienna_mace_light_diag"
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_left.damage_profile = "sienna_mace_light_diag"
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_bopp.damage_profile = "sienna_mace_push_attack"
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_upper.damage_profile = "sienna_mace_light_smiter"
+Weapons.one_handed_hammer_wizard_template_1.actions.action_one.light_attack_last.damage_profile = "sienna_mace_light_smiter"
+---------------------------SIENNA DAGGER----------------------------------
 
-		if procced then
-			self.state = "waiting_to_shoot"
-			self.time_to_shoot = t + 0.1
-			self.extra_buff_shot = true
-		else
-			self.state = "shot"
-		end
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.damage_profile = "sienna_dagger_poke"
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.damage_profile = "sienna_dagger_poke_burn"
+Weapons.one_handed_daggers_template_1.actions.action_one.default_right_heavy.allowed_chain_actions[2].start_time = 0.3
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.allowed_chain_actions[1].start_time = 0.3
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.allowed_chain_actions[2].start_time = 0.3
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.damage_profile = "sienna_dagger_heavy_stab"
+Weapons.one_handed_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_handed_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
+Weapons.one_handed_daggers_template_1.block_fatigue_point_multiplier = 0.25
+---------------------------1H SWORD---------------------------------------
 
-		if not Managers.player:owner(self.owner_unit).bot_player then
-			Managers.state.controller_features:add_effect("rumble", {
-				rumble_effect = "handgun_fire"
-			})
-		end
+Weapons.one_handed_swords_template_1.actions.action_one.light_attack_last.additional_critical_strike_chance = 0.1
+Weapons.one_handed_swords_template_1.actions.action_one.light_attack_last.damage_profile = "oneH_sword_light_last_new"
+---------------------------BOLT STAFF-------------------------------------
 
-		local first_person_extension = ScriptUnit.extension(owner_unit, "first_person_system")
-		local position, rotation = first_person_extension:get_projectile_start_position_rotation()
-
-		if current_action.fire_at_gaze_setting and ScriptUnit.has_extension(owner_unit, "eyetracking_system") then
-			local eyetracking_extension = ScriptUnit.extension(owner_unit, "eyetracking_system")
-
-			if eyetracking_extension:get_is_feature_enabled("tobii_fire_at_gaze") then
-				rotation = eyetracking_extension:gaze_rotation()
-			end
-		end
-
-		local spread_extension = self.spread_extension
-
-		if spread_extension then
-			rotation = spread_extension:get_randomised_spread(rotation)
-
-			if add_spread then
-				spread_extension:set_shooting()
-			end
-		end
-
-		local physics_world = World.get_data(world, "physics_world")
-		local auto_hit_chance = current_action.aim_assist_auto_hit_chance or 0
-		local direction = nil
-
-		if math.random() <= auto_hit_chance and Managers.input:is_device_active("gamepad") and ScriptUnit.has_extension(owner_unit, "smart_targeting_system") then
-			local targeting_extension = ScriptUnit.extension(owner_unit, "smart_targeting_system")
-			local targeting_data = targeting_extension:get_targeting_data()
-			local target_position = targeting_data.target_position
-
-			if target_position then
-				direction = Vector3.normalize(target_position - position)
-			end
-		end
-
-		direction = direction or Quaternion.forward(rotation)
-		local result = nil
-
-		if current_action.projectile_info then
-			local angle = ActionUtils.pitch_from_rotation(rotation)
-			local speed = current_action.speed
-			local target_vector = Vector3.normalize(Vector3.flat(Quaternion.forward(rotation)))
-			local lookup_data = current_action.lookup_data
-
-			ActionUtils.spawn_player_projectile(owner_unit, position, rotation, 0, angle, target_vector, speed, self.item_name, lookup_data.item_template_name, lookup_data.action_name, lookup_data.sub_action_name, self._is_critical_strike, self.power_level)
-		else
-			if current_action.ray_against_large_hitbox then
-				result = PhysicsWorld.immediate_raycast_actors(physics_world, position, direction, "static_collision_filter", "filter_player_ray_projectile_static_only", "dynamic_collision_filter", "filter_player_ray_projectile_ai_only", "dynamic_collision_filter", "filter_player_ray_projectile_hitbox_only", "dynamic_collision_filter", "filter_enemy_trigger")
-			else
-				result = PhysicsWorld.immediate_raycast_actors(physics_world, position, direction, "static_collision_filter", "filter_player_ray_projectile_static_only", "dynamic_collision_filter", "filter_player_ray_projectile_ai_only", "dynamic_collision_filter", "filter_player_ray_projectile_hitbox_only")
-			end
-
-			local is_server = self.is_server
-
-			if result then
-				DamageUtils.process_projectile_hit(world, self.item_name, owner_unit, is_server, result, current_action, direction, true, nil, nil, self._is_critical_strike, self.power_level)
-			end
-		end
-
-		if self.current_action.reset_aim_on_attack then
-			first_person_extension:reset_aim_assist_multiplier()
-		end
-
-		local fire_sound_event = self.current_action.fire_sound_event
-
-		if fire_sound_event then
-			first_person_extension:play_hud_sound_event(fire_sound_event)
-		end
-
-		if current_action.alert_sound_range_fire then
-			Managers.state.entity:system("ai_system"):alert_enemies_within_range(owner_unit, POSITION_LOOKUP[owner_unit], current_action.alert_sound_range_fire)
-		end
-
-		local hit_position = (result and result[#result][1]) or position + direction * 100
-
-		Unit.set_flow_variable(weapon_unit, "hit_position", hit_position)
-		Unit.set_flow_variable(weapon_unit, "trail_life", Vector3.length(hit_position - position) * 0.1)
-		Unit.flow_event(weapon_unit, "lua_bullet_trail")
-		Unit.flow_event(weapon_unit, "lua_bullet_trail_set")
-	end
-
-	if current_action.fatigue_cost_on_shot then
-			self:_handle_fatigue(buff_extension, self._status_extension, current_action, false)
-	end
-
-	
-	if self.state == "shot" and self.active_reload_time then
-		local input_extension = ScriptUnit.extension(owner_unit, "input_system")
-
-		if self.active_reload_time < t then
-			local ammo_extension = self.ammo_extension
-
-			if (input_extension:get("weapon_reload") or input_extension:get_buffer("weapon_reload")) and ammo_extension:can_reload() then
-				local status_extension = ScriptUnit.extension(owner_unit, "status_system")
-
-				status_extension:set_zooming(false)
-
-				local weapon_extension = ScriptUnit.extension(weapon_unit, "weapon_system")
-
-				weapon_extension:stop_action("reload")
-			end
-		elseif input_extension:get("weapon_reload") then
-			input_extension:add_buffer("weapon_reload", 0)
-		end
-	end
-end]]
---------------------------BOLT STAFF-----------------------------------------
 DamageProfileTemplates.fire_spark.critical_strike.attack_armor_power_modifer = {
 			0.5,--0.2, --1,
 			0.125, --0.05, --0.25,
@@ -1824,97 +1741,17 @@ DamageProfileTemplates.fire_spark.cleave_distribution.impact = 0.2
 DamageProfileTemplates.fire_spark.default_target.dot_template_name = "burning_spark"
 DotTypeLookup.burning_spark = "burning_dot"
 InfiniteBurnDotLookup.burning_spark = "burning_spark_infinite"
---------------------------TROLLHAMMER TORPEDO-----------------------------------------
---remove grenadier interaction
-ActionGrenadeThrower.client_owner_post_update = function (self, dt, t, world, can_damage)
-	if self.state == "waiting_to_shoot" and self.time_to_shoot <= t then
-		self.state = "shooting"
-	end
+---------------------------FIREBALL STAFF---------------------------------
 
-	if self.state == "shooting" then
-		local owner_unit = self.owner_unit
-
-		if not Managers.player:owner(self.owner_unit).bot_player then
-			Managers.state.controller_features:add_effect("rumble", {
-				rumble_effect = "crossbow_fire"
-			})
-		end
-
-		local first_person_extension = ScriptUnit.extension(owner_unit, "first_person_system")
-		local position, rotation = first_person_extension:get_projectile_start_position_rotation()
-		local spread_extension = self.spread_extension
-		local current_action = self.current_action
-
-		if spread_extension then
-			rotation = spread_extension:get_randomised_spread(rotation)
-
-			spread_extension:set_shooting()
-		end
-
-		local angle = ActionUtils.pitch_from_rotation(rotation)
-		local speed = current_action.speed
-		local target_vector = Vector3.normalize(Vector3.flat(Quaternion.forward(rotation)))
-		local lookup_data = current_action.lookup_data
-
-		ActionUtils.spawn_player_projectile(owner_unit, position, rotation, 0, angle, target_vector, speed, self.item_name, lookup_data.item_template_name, lookup_data.action_name, lookup_data.sub_action_name, self._is_critical_strike, self.power_level)
-
-		local fire_sound_event = self.current_action.fire_sound_event
-
-		if fire_sound_event then
-			first_person_extension:play_hud_sound_event(fire_sound_event)
-		end
-
-		if self.ammo_extension and not self.extra_buff_shot then
-			local ammo_usage = current_action.ammo_usage
-			--[[local _, procced = self.owner_buff_extension:apply_buffs_to_value(0, "not_consume_grenade")
-
-			if procced then
-				self.ammo_extension:add_ammo_to_reserve(ammo_usage)
-			end]]
-
-			self.ammo_extension:use_ammo(ammo_usage)
-		end
-
-		local procced = self:_check_extra_shot_proc(self.owner_buff_extension)
-		local add_spread = not self.extra_buff_shot
-
-		if procced then
-			self.state = "waiting_to_shoot"
-			self.time_to_shoot = t + 0.1
-			self.extra_buff_shot = true
-		else
-			self.state = "shot"
-		end
-
-		first_person_extension:reset_aim_assist_multiplier()
-	end
-
-	if self.state == "shot" and self.active_reload_time then
-		local owner_unit = self.owner_unit
-		local input_extension = ScriptUnit.extension(owner_unit, "input_system")
-
-		if self.active_reload_time < t then
-			local ammo_extension = self.ammo_extension
-
-			if (input_extension:get("weapon_reload") or input_extension:get_buffer("weapon_reload")) and ammo_extension:can_reload() then
-				local status_extension = ScriptUnit.extension(self.owner_unit, "status_system")
-
-				status_extension:set_zooming(false)
-
-				local weapon_extension = ScriptUnit.extension(self.weapon_unit, "weapon_system")
-
-				weapon_extension:stop_action("reload")
-			end
-		elseif input_extension:get("weapon_reload") then
-			input_extension:add_buffer("weapon_reload", 0)
-		end
-	end
-end
---remove shrapnel interaction
-ExplosionTemplates.dr_deus_01.explosion.attack_type = nil
-Weapons.dr_deus_01_template_1.actions.action_one.default.impact_data.is_torpedo = true
---Weapons.dr_deus_01_template_1.actions.action_one.default.speed = nil
---------------------------2H SWORD-----------------------------------------
+DamageProfileTemplates.staff_fireball_charged.armor_modifier.attack = {
+			1,
+			1,
+			4,
+			1,
+			0.75,
+			0
+		}
+--____________________________________________________________________________________                                                      
 ------------------------------DOTS-----------------------------------------
 
 BuffTemplates.we_deus_01_dot_small = {
@@ -2055,6 +1892,14 @@ end
 local sniper_dropoff_ranges = {
 	dropoff_start = 30,
 	dropoff_end = 50
+}
+local carbine_dropoff_ranges = {
+	dropoff_start = 15,
+	dropoff_end = 30
+}
+local shotgun_dropoff_ranges = {
+	dropoff_start = 8,
+	dropoff_end = 15
 }
 --Create a table for the new templates
 DSDamageProfileTemplates = {}
@@ -4889,10 +4734,6 @@ DSDamageProfileTemplates.saltz_flail_downward_swing = {
 		}
 	},
 }
-local carbine_dropoff_ranges = {
-	dropoff_start = 15,
-	dropoff_end = 30
-}
 DSDamageProfileTemplates.we_deus_01_small = {
 		charge_value = "projectile",
 		no_stagger_damage_reduction_ranged = true,
@@ -5380,10 +5221,6 @@ DSDamageProfileTemplates.onehanded_axe_push_attack_new = {
 			}
 		}
 	},
-}
-local shotgun_dropoff_ranges = {
-	dropoff_start = 8,
-	dropoff_end = 15
 }
 DSDamageProfileTemplates.fan_the_hammer = {
 		charge_value = "instant_projectile",
