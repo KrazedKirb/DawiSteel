@@ -137,15 +137,15 @@ SpreadTemplates.repeating_handgun = {
 			}
 		}
 }
---------------------------HALBERD-----------------------------------------
+--------------------------HALBERD----------------------------------------
 
 Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 Weapons.two_handed_halberds_template_1.block_angle = 180
 Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.damage_profile = "halberd_heavy_left"
---------------------------BRETON SNS--------------------------------------
+--------------------------BRETON SNS-------------------------------------
 
 Weapons.one_handed_sword_shield_template_2.actions.action_one.light_attack_right.damage_profile = "breton_SnS_right"
---------------------------SWORD AND MACE----------------------------------
+--------------------------SWORD AND MACE---------------------------------
 
 Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_left_diagonal.damage_profile = "oneH_hammer_light_new"
 Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_right.damage_profile = "oneH_hammer_light_new"
@@ -158,6 +158,81 @@ Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.damage_
 Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.damage_profile_left = "dual_sword_mace_heavy"
 Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack.damage_profile_right = "dual_sword_mace_heavy"
 Weapons.dual_wield_hammer_sword_template.actions.action_one.heavy_attack_2.damage_profile_right = "dual_sword_mace_heavy"
+--------------------------GREATSWORD-------------------------------------
+Weapons.two_handed_swords_template_1.actions.action_one.heavy_attack_left.hit_mass_count = nil
+Weapons.two_handed_swords_template_1.actions.action_one.heavy_attack_left.anim_event = "questing_knight_ability_double_activation_attack_02"
+Weapons.two_handed_swords_template_1.actions.action_one.heavy_attack_left.baked_sweep = {
+					{
+						0.11666666666666667,
+						0.2992544174194336,
+						-0.8549087047576904,
+						-0.20883572101593018,
+						-0.4431801736354828,
+						0.5468304753303528,
+						0.5484552979469299,
+						0.4514026641845703
+					},
+					{
+						0.14777777777777779,
+						0.306884765625,
+						-0.8023288249969482,
+						-0.20673584938049316,
+						-0.4364558160305023,
+						0.5505356192588806,
+						0.5580134391784668,
+						0.4416307508945465
+					},
+					{
+						0.1788888888888889,
+						0.34606170654296875,
+						-0.4087304174900055,
+						-0.19377124309539795,
+						-0.3824060559272766,
+						0.5605194568634033,
+						0.6415184140205383,
+						0.3578234612941742
+					},
+					{
+						0.21000000000000002,
+						0.16968250274658203,
+						0.23989242315292358,
+						-0.1526503562927246,
+						-0.5096800327301025,
+						0.476539671421051,
+						0.5796784162521362,
+						0.42084330320358276
+					},
+					{
+						0.2411111111111111,
+						0.20040607452392578,
+						0.44659894704818726,
+						-0.15443837642669678,
+						0.524288535118103,
+						-0.3843637704849243,
+						-0.5682659149169922,
+						-0.5044405460357666
+					},
+					{
+						0.27222222222222225,
+						0.19831275939941406,
+						0.44607335329055786,
+						-0.15331578254699707,
+						0.5219355821609497,
+						-0.38639694452285767,
+						-0.5703303813934326,
+						-0.5029953718185425
+					},
+					{
+						0.30333333333333334,
+						0.1984424591064453,
+						0.44396835565567017,
+						-0.15425515174865723,
+						0.5210402011871338,
+						-0.3872292935848236,
+						-0.5679898262023926,
+						-0.505923330783844
+					}
+				}
 --____________________________________________________________________________________                                                                                                            
 --$$$$$$$\                            $$\ $$\           
 --$$  __$$\                           $$ |\__|          
@@ -770,11 +845,11 @@ SpreadTemplates.javelin = {
 		}
 	}
 Weapons.javelin_template.default_spread_template = "javelin"
-DamageProfileTemplates.thrown_javelin.default_target.power_distribution_near.impact = 0.225
-DamageProfileTemplates.thrown_javelin.default_target.power_distribution_far.impact = 0.225
+--DamageProfileTemplates.thrown_javelin.default_target.power_distribution_near.impact = 0.225
+--DamageProfileTemplates.thrown_javelin.default_target.power_distribution_far.impact = 0.225
 Weapons.javelin_template.actions.action_one.throw_charged.impact_data.damage_profile = "javelin_throw"
 --additional penetration on javelin
-Weapons.javelin_template.actions.action_one.throw_charged.is_thrown_javelin = true
+--[[Weapons.javelin_template.actions.action_one.throw_charged.is_thrown_javelin = true
 PlayerProjectileHuskExtension.init = function (self, extension_init_context, unit, extension_init_data)
 	local owner_unit = extension_init_data.owner_unit
 	local item_name = extension_init_data.item_name
@@ -943,9 +1018,9 @@ PlayerProjectileUnitExtension.init = function (self, extension_init_context, uni
 	end
 
 	self:initialize_projectile(projectile_info, impact_data)
-end
+end]]
 --prevent penetrating super armor, monsters, and shields
-PlayerProjectileHuskExtension.hit_enemy_damage = function (self, damage_profile, hit_unit, hit_position, hit_direction, hit_normal, hit_actor, breed, ranged_boost_curve_multiplier, hit_units)
+--[[PlayerProjectileHuskExtension.hit_enemy_damage = function (self, damage_profile, hit_unit, hit_position, hit_direction, hit_normal, hit_actor, breed, ranged_boost_curve_multiplier, hit_units)
 	local owner = self._owner_player
 	local owner_unit = self._owner_unit
 	local action = self._current_action
@@ -1202,9 +1277,9 @@ PlayerProjectileUnitExtension.hit_enemy_damage = function (self, damage_profile,
 	end
 
 	return shield_blocked, forced_penetration
-end
+end]]
 --prevent additional penetrations from applying to infantry or berserkers
-PlayerProjectileHuskExtension.hit_enemy = function (self, impact_data, hit_unit, hit_position, hit_direction, hit_normal, hit_actor, breed, hit_units, ranged_boost_curve_multiplier)
+--[[PlayerProjectileHuskExtension.hit_enemy = function (self, impact_data, hit_unit, hit_position, hit_direction, hit_normal, hit_actor, breed, hit_units, ranged_boost_curve_multiplier)
 	if hit_actor == nil then
 		return
 	end
@@ -1260,8 +1335,6 @@ PlayerProjectileHuskExtension.hit_enemy = function (self, impact_data, hit_unit,
 	elseif self._max_mass <= self._amount_of_mass_hit and current_action.is_thrown_javelin then
 		if self._num_additional_penetrations > 0 and not (breed.armor_category == 1 or breed.armor_category == 5) then
 			forced_penetration = true
-		--[[elseif self._num_additional_penetrations > 0 and (breed.armor_category == 1 or breed.armor_category == 5) then
-			forced_penetration = false]]
 		else
 			if allow_link then
 				self:_handle_linking(impact_data, hit_unit, hit_position, hit_direction, hit_normal, hit_actor, self._did_damage, true)
@@ -1361,8 +1434,6 @@ PlayerProjectileUnitExtension.hit_enemy = function (self, impact_data, hit_unit,
 	elseif self._max_mass <= self._amount_of_mass_hit and current_action.is_thrown_javelin then
 		if self._num_additional_penetrations > 0 and not (breed.armor_category == 1 or breed.armor_category == 5) then
 			forced_penetration = true
-		--[[elseif self._num_additional_penetrations > 0 and (breed.armor_category == 1 or breed.armor_category == 5) then
-			forced_penetration = false]]
 		else
 			if allow_link then
 				self:_handle_linking(impact_data, hit_unit, hit_position, hit_direction, hit_normal, hit_actor, self._did_damage, true)
@@ -1380,9 +1451,9 @@ PlayerProjectileUnitExtension.hit_enemy = function (self, impact_data, hit_unit,
 	if forced_penetration then
 		self._num_additional_penetrations = self._num_additional_penetrations - 1
 	end
-end
+end]]
 ---------------------------GLAIVE-----------------------------------------
---Weapons.two_handed_axes_template_2.actions.action_one.light_attack_left_upward.hit_mass_count = nil
+
 Weapons.two_handed_axes_template_2.actions.action_one.light_attack_bopp.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 ---------------------------ELF 1H SWORD-----------------------------------
 
@@ -2066,8 +2137,8 @@ DSDamageProfileTemplates.javelin_throw = {
 		critical_strike = {
 			attack_armor_power_modifer = {
 				1,
-				0.49, --0.63, --0.623, --0.616, --1,
-				1.64, --1.639, --1.628, --1.3,
+				0.47, --0.5, --0.49, --0.63, --0.623, --0.616, --1,
+				1.65, --1.64, --1.639, --1.628, --1.3,
 				1,
 				0.75,
 				0.35 --0.44 --0.5
@@ -2084,11 +2155,11 @@ DSDamageProfileTemplates.javelin_throw = {
 		armor_modifier_near = {
 			attack = {
 				1,
-				0.49, --0.63, --0.623, --0.616, --0.7,
-				1.64, --1.639, --1.628, --1.1,
+				0.47, --0.5, --0.49, --0.63, --0.623, --0.616, --0.7,
+				1.65, --1.64, --1.639, --1.628, --1.1,
 				1,
 				0.75,
-				0.175 --0.22 --0.25
+				0.2 --0.175 --0.22 --0.25
 			},
 			impact = {
 				1,
@@ -2102,11 +2173,11 @@ DSDamageProfileTemplates.javelin_throw = {
 		armor_modifier_far = {
 			attack = {
 				1,
-				0.49, --0.63, --0.623, --0.616, --0.7,
-				1.64, --1.639, --1.628, --1.1,
+				0.47, --0.5, --0.49, --0.63, --0.623, --0.616, --0.7,
+				1.65, --1.64, --1.639, --1.628, --1.1,
 				1,
 				0.75,
-				0.175 --0.22 --0.25
+				0.2 --0.175 --0.22 --0.25
 			},
 			impact = {
 				1,
@@ -2118,11 +2189,11 @@ DSDamageProfileTemplates.javelin_throw = {
 			}
 		},
 		cleave_distribution = {
-			attack = 0.8,
-			impact = 0.8
+			attack = 0.536, --0.6, --0.8,
+			impact = 0.536 --0.6 --0.8
 		},
 		default_target = {
-			boost_curve_coefficient_headshot = 3.1, --2.5, --3, --2.8, --2, --1.6,
+			boost_curve_coefficient_headshot = 1.6, --3.1, --2.5, --3, --2.8, --2, --1.6,
 			boost_curve_type = "smiter_curve",
 			boost_curve_coefficient = 1,
 			attack_template = "projectile_javelin",
@@ -5335,6 +5406,6 @@ mod:hook(_G, "Localize", function(func, key, ...)
   end
    return func(key, ...)
 end)
-mod:echo("Applying the Master Rune of Flight...")
+mod:echo("[Dawi Steel v0.11]: Applying the Master Rune of Flight...")
 -- Your mod code goes here.
 -- https://vmf-docs.verminti.de
